@@ -2,4 +2,4 @@
 
 My up-to-date resume!
 
-Built using https://github.com/posquit0/Awesome-CV
+Built on a customized [Awesome CV](https://github.com/posquit0/Awesome-CV) template.
