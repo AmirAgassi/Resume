@@ -1,4 +1,12 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
 \documentclass[letterpaper,11pt]{article}
+
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
@@ -10,186 +18,216 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
-\usepackage{fontawesome5}
-\usepackage{ragged2e}
-\usepackage{etoolbox}
-\usepackage{tikz}
 \input{glyphtounicode}
-\usepackage[sc]{mathpazo}
-\linespread{0.72}
+\definecolor{profteal}{RGB}{0,102,128}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+% latin modern
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
 \usepackage[T1]{fontenc}
+
+
 \pagestyle{fancy}
-\fancyhf{}
+\fancyhf{} % clear all header and footer fields
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-0.7in}
+\addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
+
 \urlstyle{same}
+
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
-\setlength{\footskip}{5pt}
+
+% Sections formatting default
+% \titleformat{\section}{
+%   \vspace{-4pt}\scshape\raggedright\large
+% }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Sections formatting for lato font
+% \titleformat{\section}{
+%   \vspace{-4pt}\bfseries\raggedright\large
+% }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Sections formatting for lato font + colour
 \titleformat{\section}{
-  \vspace{-8pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-2pt}]
+  \vspace{-4pt}\bfseries\raggedright\large\color{profteal}
+}{}{0em}{}[\color{profteal}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
-\newcommand{\cvitem}[1]{
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
   \item\small{
-    {#1\vspace{-2pt}}
+    {#1 \vspace{0pt}}
   }
 }
-\newcommand{\cvheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+
+\newcommand{\resumeSubheading}[4]{
+  % \vspace{0pt}
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
-      \small#3 & \small #4 \\
-    \end{tabular*}\vspace{-6pt}
+      % \textit{\small#3} & \textit{\small #4} \\
+      \small#3 & \small#4
+    \end{tabular*}\vspace{-5pt}
 }
-\newcommand{\cvheadingstart}{\begin{itemize}[leftmargin=0in, label={}]}
-\newcommand{\cvheadingend}{\end{itemize}}
-\newcommand{\cvitemstart}{\begin{itemize}\justifying}
-\newcommand{\cvitemend}{\end{itemize}\vspace{-5pt}}
-\newcommand{\cvskill}[2]{
-  \textcolor{black}{\textbf{#1}}\hfill
-  \foreach \x in {1,...,5}{%
-    \space{\ifnumgreater{\x}{#2}{\color{black!80!white!20}}{\color{black}}\faSquare}}\par%
-  \vspace{-2pt}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
 }
-\renewcommand\labelitemii{$\vcenter{\hbox{\footnotesize$\bullet$}}$}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeTeamOnly}[2]{
+\vspace{-6pt}
+  \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      {\small #1} & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \begin{document}
 
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
 \begin{center}
-  \textbf{\LARGE\scshape AMIR AGASSI} \\
-  \vspace{1pt}\small
-  \href{https://github.com/amiragassi}{GitHub}
-  $\ \diamond\ $
-  \href{https://amiragassi.com}{amiragassi.com}
-  $\ \diamond\ $ 
-  \href{mailto:amiragassi04@gmail.com}{amiragassi04@gmail.com}
-  $\ \diamond\ $
-  \href{https://www.linkedin.com/in/amir-agassi/}{LinkedIn}
+    \textbf{\Huge \scshape {Amir} {Agassi}} \\ \vspace{1pt}
+    \small 416-618-8856 $|$ \href{mailto:amiragassi04@gmail.com}{\underline{amiragassi04@gmail.com}} $|$ 
+    \href{https://www.linkedin.com/in/amir-agassi/}{\underline{LinkedIn}} $|$
+    \href{https://github.com/amiragassi}{\underline{GitHub}} $|$
+    \href{https://amiragassi.com}{\underline{Portfolio}}
 \end{center}
 
+
+%-----------EDUCATION-----------
 \section{Education}
-\cvheadingstart
-  \cvheading
-    {Wilfrid Laurier University}{\textbf{Waterloo, Ontario}}
-    {BSc Computer Science}{2022 - 2026}
-  \cvheading
-    {Western Governors University}{\textbf{Remote}}
-    {Accelerated BSc Cybersecurity \& Information Assurance}{Sept. 2024 - Feb. 2025}
-\cvheadingend
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Wilfrid Laurier University}{2022 -- 2026}
+      {BSc Computer Science}{Waterloo, ON}
+    \resumeSubheading
+      {Western Governors University}{Sept. 2024 -- Feb. 2025}
+      {Accelerated BSc Cybersecurity \& Information Assurance}{Remote}
+  \resumeSubHeadingListEnd
 
-\section{Professional Experience}
-\cvheadingstart
-    \cvheading
-      {Shopify}{\textbf{Toronto, Ontario}}
-      {Software Engineer Intern, Co-op}{January 2025 – Present}
-    \cvitemstart
-      \cvitem{Developed Shopify’s new analytics ETL pipelines using \textbf{Apache Kafka}, \textbf{Airflow}, \textbf{Dataflow}, \textbf{dbt}, and \textbf{ClickHouse}, enhancing pipeline efficiency and reliability for reporting systems used by \textbf{millions of merchants globally.}}
-    \cvitemend
-    
 
-  \cvheading
-    {Konfer}{\textbf{Waterloo, Ontario}}
-    {Software Engineer}{July 2024 - Present}
-  \cvitemstart
-    \cvitem{Drove the startup's engineering vision and technical strategy, powering our \textbf{5+ high-impact annual events} and hosting up to \textbf{2000+ people} through our \textbf{white-label hackathons and tech mixers.}}
-  \cvitemend
-
-  \cvheading
-    {Civiconnect}{\textbf{Remote}}
-    {Web Development Associate, Co-op}{September 2024 - Present}
-  \cvitemstart
-    \cvitem{Collaborated with the Web Development Team to design, develop, and maintain web applications for small to mid-sized businesses, contributing to \textbf{3+ client projects} using \textbf{Figma, React, and Supabase}.}
-  \cvitemend
-
-  \cvheading
-    {Sterling Karamar Property Management}{\textbf{Toronto, Ontario}}
-    {Software Developer, Full time}{July 2021 - August 2022}
-  \cvitemstart
-    \cvitem{Built and maintained large-scale reporting and automation tools for over \textbf{85+ corporate real estate clients}, reducing monthly report creation time by \textbf{up to 95\%}.}
-  \cvitemend
-
-  \cvheading
-    {360 Business Marketing Inc.}{\textbf{Concord, Ontario}}
-    {Digital Solutions Intern}{June 2020 - April 2021}
-  \cvitemstart
-    \cvitem{Engineered and implemented a custom analytics dashboard to monitor website traffic and user behavior used with \textbf{120+ clients}, improving lead generation rates by \textbf{up to 40\%}.}
-  \cvitemend
-
-  \cvheading
-    {MIT Consulting}{\textbf{North York, Ontario}}
-    {IT Support Intern}{January 2020 - May 2020}
-  \cvitemstart
-    \cvitem{Wrote automation scripts in \textbf{Java} and \textbf{Python} and assisted in providing IT services for 15+ small businesses.}
-  \cvitemend
-\cvheadingend
-
-\section{Activities}
-\cvheadingstart
-  \cvheading
-    {Laurier Computing Society}{\textbf{Waterloo, Ontario}}
-    {Vice President of Development \& Technology}{January 2024 - Present}
-  \cvitemstart
-    \cvitem{Overseeing the development and maintenance of society's technical infrastructure, organizing \textbf{10+ tech-related events and workshops per semester}, with an average attendance of \textbf{75 students}.}
-  \cvitemend
-
-  \cvheading
-    {HawkHacks}{\textbf{Waterloo, Ontario}}
-    {Vice President of Engineering \& Development}{November 2023 - Present}
-  \cvitemstart
-    \cvitem{Managed a \textbf{team of 6} to develop a scalable event platform by building a \textbf{\href{https://hawkhacks.ca/}{high-traffic landing page}} and \textbf{\href{https://portal.hawkhacks.ca/login}{custom dashboard}}, handling over \textbf{1800+ applications} and supporting \textbf{700+ attendees}.}
-
-  \cvitemend
-
-  \cvheading
-    {Computing Councils of Canada}{\textbf{Remote}}
-    {Director of Systems Administration}{November 2022 - December 2024}
-  \cvitemstart
-    \cvitem{Led the development of a responsive landing page, Discord bot, and \textbf{3 software-related projects}, connecting a community of \textbf{900+ students} in computing clubs across Canada.}
-  \cvitemend
-\cvheadingend
-
-\section{Projects}
-\cvheadingstart
-\item
-\cvitemstart
-  \cvitem{\textbf{\href{https://github.com/KonferCA/SPUR-onboard/}{SPUR IC OnBoard:}} Developed SPUR Innovation Center's streamlined digital platform to manage startup on-boarding, review, and funding processes for SPUR administrators, startup applicants, and investors. Developed using \textbf{Go} and \textbf{React}, using tools like \textbf{Docker} and \textbf{PostgreSQL}.}
-  \vspace{6pt}
-  \cvitem{\textbf{\href{https://github.com/AmirAgassi/Danghui-LVM}{Danghui-cLVM:}} Proof of concept Roblox ACE exploit to execute arbitrary code \& fully replicate the scripts to player's machines, affecting \textbf{37.1 million daily active players}.}
-  \vspace{6pt}
-  \cvitem{\textbf{\href{https://quickreports.me}{QuickReports:}} A React-based web application in use by \textbf{2 medium-sized marketing agencies}, integrating \textbf{8+ digital marketing analytics tools} into a single dashboard \& supplying \textbf{164+ businesses'} monthly reports.}
-\cvitemend
-\cvheadingend
 \section{Certifications}
-\cvheadingstart
-\item
-\cvitemstart
-  \cvitem{
-    \textbf{\href{https://cp.certmetrics.com/amazon/en/public/verify/credential/2LC36B3CWM411J3K}{AWS Certified Solutions Architect - Professional}} •
-    \textbf{\href{https://www.credly.com/badges/c9811ec9-a04e-439f-a1bf-f4e18f11c6ee/public_url}{Google Cloud Professional Data Engineer}}
-  }
-  \cvitem{
-    \textbf{\href{https://www.credly.com/badges/438afda8-6dca-4ad4-94db-0d44baf82fd6/public_url}{CompTIA Network+}} •
-    \textbf{\href{https://www.credly.com/badges/f474c77c-bbcf-4327-aa37-3dd99da3ba62/public_url}{CompTIA A+ IT}}• \textbf{\href{https://www.linkedin.com/in/amir-agassi/details/certifications/1736993044174/single-media-viewer/?profileId=ACoAAEZvsg8BHJ2SKQfF3qavwxRrYll5Acx8QSg}{ITIL 4 Foundation (IT Service Management)}}
-  }
-  \cvitem{
-    \textbf{\href{https://www.credly.com/earner/earned/badge/bfaf1b1c-51b4-4b34-b708-aa649e51a294}{CompTIA Cybersecurity Analyst (CySA+)}} •
-    \textbf{\href{https://www.credly.com/badges/eb621d7d-a8c0-4233-b246-907323b95429/public_url}{CompTIA Project+}} •
-    \textbf{\href{https://www.credly.com/earner/earned/badge/d592ba39-9b53-43a3-b502-a357987484a4}{CompTIA PenTest+}}
-  }
-  \cvitem{
-    \textbf{\href{https://www.credly.com/badges/ddb1f2a4-4e5d-4f97-bc55-ff52a9ade614/public_url}{CompTIA Security+}} •
-    \textbf{\href{https://cs.lpi.org/caf/Xamman/certification/verify/LPI000645485/j6l5zdd7sf}{Linux Essentials 010 (Perfect Score)}}
-  }
-\cvitemend
-\cvheadingend
+    \begin{itemize}[leftmargin=0.15in, label={}]
+        \small{\item{
+        \href{https://cp.certmetrics.com/amazon/en/public/verify/credential/2LC36B3CWM411J3K}{AWS Solutions Architect - Professional}, \href{https://www.credly.com/badges/c9811ec9-a04e-439f-a1bf-f4e18f11c6ee/public_url}{Google Cloud Professional Data Engineer}, \href{https://www.linkedin.com/in/amir-agassi/details/certifications/1736993044174/single-media-viewer/?profileId=ACoAAEZvsg8BHJ2SKQfF3qavwxRrYll5Acx8QSg}{ITIL 4 - IT Service Management,} \\
+        CompTIA (\href{https://www.credly.com/badges/f474c77c-bbcf-4327-aa37-3dd99da3ba62/public_url}{A+}, \href{https://www.credly.com/badges/438afda8-6dca-4ad4-94db-0d44baf82fd6/public_url}{Network+}, \href{https://www.credly.com/badges/ddb1f2a4-4e5d-4f97-bc55-ff52a9ade614/public_url}{Security+}, \href{https://www.credly.com/earner/earned/badge/bfaf1b1c-51b4-4b34-b708-aa649e51a294}{CySA+}, \href{https://www.credly.com/earner/earned/badge/d592ba39-9b53-43a3-b502-a357987484a4}{PenTest+}, \href{https://www.credly.com/badges/eb621d7d-a8c0-4233-b246-907323b95429/public_url}{Project+}), \href{https://cs.lpi.org/caf/Xamman/certification/verify/LPI000645485/j6l5zdd7sf}{Linux Essentials 010 (Perfect Score)}
+        }}
+    \end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Shopify}{January 2025 -- August 2025}
+      {Software Engineer Intern $|$ Kotlin, Python, Kafka, Airflow, Dataflow, dbt, ClickHouse, SQL}{Toronto, ON}
+     \resumeItemListStart
+          \resumeItem{Developed and deployed scalable data ingestion services using \textbf{Kafka} and \textbf{Dataflow}, implementing custom monitoring and alerting to maintain a \textbf{99.999\% uptime} guarantee for pipelines processing up to \textbf{967,000 events/sec}.}
+          \resumeItem{Engineered \textbf{98 dbt models} to transform raw event data into aggregated datasets for merchant analytics, optimizing \textbf{ClickHouse} query performance by over \textbf{40\%} through materialized views and schema redesign.}
+        \resumeItemListEnd
+    \resumeSubheading
+      {Konfer}{July 2024 -- Present}
+      {Software Engineer $|$ Go, React, TypeScript, AWS}{Waterloo, ON}
+        \resumeItemListStart
+          \resumeItem{Drove the startup's engineering vision and strategy, powering our \textbf{7+ high-impact events annually} and hosting up to \textbf{1100+ people} through our \textbf{white-label hackathons and tech mixers.}}
+          \resumeItem{Developed a reusable white-label hackathon dashboard, handling over \textbf{6,000+} applications across \textbf{5+ events} and reducing the deployment time for new client events \textbf{from weeks to days.}}
+        \resumeItemListEnd
+    \resumeSubheading
+      {Civiconnect}{September 2024 -- December 2024}
+      {Web Development Associate $|$ Figma, React, Supabase, TypeScript}{Remote}
+    \resumeItemListStart
+      \resumeItem{Collaborated with the Web Development Team to design, develop, and maintain web applications for small to mid-sized businesses, contributing to \textbf{3+ client projects} using \textbf{Figma, React, and Supabase}.}
+    \resumeItemListEnd
+    \resumeSubheading
+      {Sterling Karamar Property Management}{July 2021 -- August 2022}
+      {Software Developer Intern $|$ SQL, Python}{Toronto, ON}
+    \resumeItemListStart
+      \resumeItem{Built and maintained large-scale reporting and automation tools for over \textbf{85+ corporate real estate clients}, reducing monthly report creation time by \textbf{up to 95\%}.}
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/KonferCA/SPUR-onboard/}{\underline{SPUR IC OnBoard}}} $|$ \emph{Go, React, Docker, PostgreSQL}}{}
+          \resumeItemListStart
+            \resumeItem{Developed a digital platform to manage the startup lifecycle from on-boarding to funding.}
+            \resumeItem{Scaled to \textbf{200--400} applicants and investments of \$\textbf{1M--5M} in startup funding processed annually.}
+            
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+   \resumeSubHeadingListStart
+        \resumeProjectHeading
+          {\textbf{\href{https://github.com/AmirAgassi/Danghui-LVM}{\underline{Danghui-cLVM}}} $|$ \emph{C, C++}}{}
+          \resumeItemListStart
+            \resumeItem{Architected a custom Roblox Lua virtual machine, dynamically translating opcodes to execute arbitrary code.}
+            \resumeItem{Reverse-engineered the game client’s internal Lua functions to build a compatible execution engine, enabling arbitrary script execution for over \textbf{37.1 million} daily active users.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
 
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, Go, Kotlin, TypeScript, JavaScript, Ruby, Java, C++, C, SQL, Bash} \\
+     \textbf{Technologies}{: React, Kafka, Airflow, Dataflow, dbt, ClickHouse, AWS, GCP, Docker, Linux, Supabase, MySQL, PostgreSQL} \\
+     \textbf{Concepts}{: Backend Development, Data Engineering, Distributed Systems, Cloud Architecture, Scalability, Microservices, ETL Development, Data Modeling, Infrastructure, CI/CD, DevOps, Concurrency, Networking, Cybersecurity, Databases, REST API} \\
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
 \end{document}
+
